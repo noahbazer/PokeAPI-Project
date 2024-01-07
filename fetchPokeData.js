@@ -29,13 +29,13 @@ async function fetchData() {
       case "water":
         return "https://archives.bulbagarden.net/media/upload/4/4a/WaterIC_Big.png";
       case "bug":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/BugIC_Big.png";
+        return "https://archives.bulbagarden.net/media/upload/c/c8/BugIC_Big.png";
       case "normal":
         return "https://archives.bulbagarden.net/media/upload/3/39/NormalIC_Big.png";
       case "electric":
         return "https://archives.bulbagarden.net/media/upload/4/4a/ElectricIC_Big.png";
       case "ground":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/GroundIC_Big.png";
+        return "https://archives.bulbagarden.net/media/upload/8/8f/GroundIC_Big.png";
       case "fairy":
         return "https://archives.bulbagarden.net/media/upload/4/4a/FairyIC_Big.png";
       case "fighting":
