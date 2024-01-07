@@ -27,7 +27,7 @@ async function fetchData() {
       case "flying":
         return "https://archives.bulbagarden.net/media/upload/c/cb/FlyingIC_Big.png";
       case "water":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/WaterIC_Big.png";
+        return "https://archives.bulbagarden.net/media/upload/5/56/WaterIC_Big.png";
       case "bug":
         return "https://archives.bulbagarden.net/media/upload/c/c8/BugIC_Big.png";
       case "normal":
