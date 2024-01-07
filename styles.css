@@ -1,18 +1,20 @@
 body {
-    background-color: #373737;
+    background-image: url(./background.webp);
+    background-position: top;
+    background-size: cover;
     font-family: 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 1.6;
     color: #ffffff;
     text-align: center;
-    margin: 20px;
-    padding: 20px;
+    margin: 0px;
+    padding: none;
     overflow-x: hidden;
 }
 
 header {
-    background-color: #282828;
+    background-color: #28282884;
     padding: 20px;
     color: #ffffff;
     display: flex;
@@ -51,7 +53,7 @@ header {
 }
 
 .card {
-    background-color: #484848;
+    background-color: #3d3d3d84;
     color: #ffffff;
     margin: 10px;
     padding: 20px;
