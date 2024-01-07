@@ -85,9 +85,10 @@ function displayData() {
 
     card.innerHTML = `
       <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <h2>${pokemon.name}</h2>
-      <p>HP: ${hpStat ? hpStat.base_stat : "Unknown"}</p>
+      <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
+      <div class="types">
       ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join("")}
+      </div>
       <button onclick="addToFavorites(${index})">Add to Favorites</button>
     `;
     container.appendChild(card);

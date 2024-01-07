@@ -73,7 +73,9 @@ header {
 }
 
 .card h2 {
-    margin: 0 0 10px 0;
+    margin: 0;
+    letter-spacing: 1px;
+    font-weight: 300;
 }
 
 .card button {
@@ -83,4 +85,14 @@ header {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.splash img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
