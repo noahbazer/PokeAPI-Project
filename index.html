@@ -16,13 +16,16 @@
             <div class="title">PokeAPI</div>
             <nav class="nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#" id="favorites-link">Favorites</a></li>
+                    <li><p onclick="showMainContainer()">Home</p></li>
+                    <li><p onclick="showFavoritesContainer()" id="favorites-link">Favorites</p></li>
                 </ul>
             </nav>
         </header>
-        <div class="mainSection">
+        <div class="main-container">
             <div class="card-container"></div>
+        </div>
+        <div class="favorites-container">
+            <div class="favorites-card-container"></div>
         </div>
         <script src="./fetchPokeData.js" async defer></script>
         <script src="./favorites.js" async defer></script>

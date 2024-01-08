@@ -83,12 +83,16 @@ function displayData() {
     const types = pokemon.types.map((type) => type.type.name);
 
     card.innerHTML = `
-      <img src="${pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}" alt="${pokemon.name}">
-      <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
-      <div class="types">
-      ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join("")}
+      <div class="card-image">
+        <img class='card-sprite' src="${pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}" alt="${pokemon.name}">
       </div>
-      <button onclick="addToFavorites(${index})">Add to Favorites</button>
+      <div class="card-content">
+        <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
+        <div class="types">
+          ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join("")}
+        </div>
+        <button onclick="addToFavorites(${index})">Add to Favorites</button>
+      </div>
     `;
     container.appendChild(card);
   });
@@ -99,31 +103,50 @@ function addToFavorites(index) {
   pokemonData.splice(index, 1);
   displayData();
   displayFavorites();
-}
+};
+
+function removeFromFavorites(index) {
+  pokemonData.push(favorites[index]);
+  favorites.splice(index, 1);
+  displayData();
+  displayFavorites();
+};
 
 function displayFavorites() {
-  const favoritesContainer = document.getElementById('favoritesContainer');
+  const favoritesContainer = document.querySelector('.favorites-container');
   favoritesContainer.innerHTML = '';
 
-  favorites.forEach((pokemon, index) => {
+  favorites.forEach((pokemon) => {
     const card = document.createElement('div');
     card.classList.add('card');
     const types = pokemon.types.map((type) => type.type.name);
 
     card.innerHTML = `
-      <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
-      <div class="types">
-      ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join('')}
+      <div class="card-image">
+        <img class='card-sprite' src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
       </div>
-      <button onclick="removeFromFavorites(${index})">Remove from Favorites</button>
+      <div class="card-content">
+        <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
+        <div class="types">
+          ${types.map((type) => `<img class="type-icon" src="${setTypeIcon(type)}">`).join('')}
+        </div>
+        <button onclick="removeFromFavorites()">Remove from Favorites</button>
+      </div>
     `;
     favoritesContainer.appendChild(card);
   });
 }
 
-function removeFromFavorites(index) {}
-
-function sortData() {}
-
 fetchData();
+
+const mainContainer = document.querySelector('.main-container');
+const favoritesContainer = document.querySelector('.favorites-container');
+const showFavoritesContainer = () => {
+  mainContainer.style.display = 'none';
+  favoritesContainer.style.display = 'flex';
+}
+
+const showMainContainer = () => {
+  mainContainer.style.display = 'flex';
+  favoritesContainer.style.display = 'none';
+};
