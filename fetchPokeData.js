@@ -103,13 +103,20 @@ function addToFavorites(index) {
   favoritesContainer.appendChild(card);
   favorites.push(pokemonData[index]);
   pokemonData.splice(index, 1);
+  const button = card.querySelector('button');
+  button.textContent = 'Remove from Favorites';
+  button.setAttribute('onclick', `removeFromFavorites(${index})`);
 };
 
 function removeFromFavorites(index) {
   const card = document.querySelector(`.card[data-index="${index}"]`);
+  favoritesContainer.removeChild(card);
   mainContainer.appendChild(card);
-  pokemonData.push(favorites[index]);
   favorites.splice(index, 1);
+  pokemonData.push(card);
+  const button = card.querySelector('button');
+  button.textContent = 'Add to Favorites';
+  button.setAttribute('onclick', `addToFavorites(${index})`);
 };
 
 function displayData() {
