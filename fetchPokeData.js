@@ -99,26 +99,53 @@ function displayData() {
 }
 
 function addToFavorites(index) {
+  const card = document.querySelector(`.card[data-index="${index}"]`);
+  favoritesContainer.appendChild(card);
   favorites.push(pokemonData[index]);
   pokemonData.splice(index, 1);
-  displayData();
-  displayFavorites();
 };
 
 function removeFromFavorites(index) {
+  const card = document.querySelector(`.card[data-index="${index}"]`);
+  mainContainer.appendChild(card);
   pokemonData.push(favorites[index]);
   favorites.splice(index, 1);
-  displayData();
-  displayFavorites();
 };
 
-function displayFavorites() {
-  const favoritesContainer = document.querySelector('.favorites-container');
-  favoritesContainer.innerHTML = '';
+function displayData() {
+  const container = document.querySelector('.card-container');
+  container.innerHTML = '';
 
-  favorites.forEach((pokemon) => {
+  pokemonData.forEach((pokemon, index) => {
     const card = document.createElement('div');
     card.classList.add('card');
+    card.setAttribute('data-index', index);
+    const types = pokemon.types.map((type) => type.type.name);
+
+    card.innerHTML = `
+      <div class="card-image">
+        <img class='card-sprite' src="${pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}" alt="${pokemon.name}">
+      </div>
+      <div class="card-content">
+        <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
+        <div class="types">
+          ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join("")}
+        </div>
+        <button onclick="addToFavorites(${index})">Add to Favorites</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function displayFavorites() {
+  const favoritesContainer = document.querySelector('.favorites-card-container');
+  favoritesContainer.innerHTML = '';
+
+  favorites.forEach((pokemon, index) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.setAttribute('data-index', index);
     const types = pokemon.types.map((type) => type.type.name);
 
     card.innerHTML = `
@@ -130,7 +157,7 @@ function displayFavorites() {
         <div class="types">
           ${types.map((type) => `<img class="type-icon" src="${setTypeIcon(type)}">`).join('')}
         </div>
-        <button onclick="removeFromFavorites()">Remove from Favorites</button>
+        <button onclick="removeFromFavorites(${index})">Remove from Favorites</button>
       </div>
     `;
     favoritesContainer.appendChild(card);
@@ -139,8 +166,8 @@ function displayFavorites() {
 
 fetchData();
 
-const mainContainer = document.querySelector('.main-container');
-const favoritesContainer = document.querySelector('.favorites-container');
+const mainContainer = document.querySelector('.card-container');
+const favoritesContainer = document.querySelector('.favorites-card-container');
 const showFavoritesContainer = () => {
   mainContainer.style.display = 'none';
   favoritesContainer.style.display = 'flex';
@@ -150,3 +177,36 @@ const showMainContainer = () => {
   mainContainer.style.display = 'flex';
   favoritesContainer.style.display = 'none';
 };
+
+
+function sortByNameAsc() {
+  const cards = mainContainer.querySelectorAll('.card');
+  const sortedCards = Array.from(cards).sort((a, b) => a.querySelector('.card-title').textContent.localeCompare(b.querySelector('.card-title').textContent));
+  sortedCards.forEach((card) => {
+    mainContainer.appendChild(card);
+  });
+}
+
+function sortByNameDesc() {
+  const cards = mainContainer.querySelectorAll('.card');
+  const sortedCards = Array.from(cards).sort((a, b) => b.querySelector('.card-title').textContent.localeCompare(a.querySelector('.card-title').textContent));
+  sortedCards.forEach((card) => {
+    mainContainer.appendChild(card);
+  });
+}
+
+function sortCardsAlphabetically() {
+  const cards = favoritesContainer.querySelectorAll('.card');
+  const sortedCards = Array.from(cards).sort((a, b) => a.querySelector('.card-title').textContent.localeCompare(b.querySelector('.card-title').textContent));
+  sortedCards.forEach((card) => {
+    favoritesContainer.appendChild(card);
+  });
+}
+
+function sortCardsReverseAlphabetically() {
+  const cards = favoritesContainer.querySelectorAll('.card');
+  const sortedCards = Array.from(cards).sort((a, b) => b.querySelector('.card-title').textContent.localeCompare(a.querySelector('.card-title').textContent));
+  sortedCards.forEach((card) => {
+    favoritesContainer.appendChild(card);
+  });
+}

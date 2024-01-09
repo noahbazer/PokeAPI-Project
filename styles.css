@@ -59,8 +59,14 @@ header {
     margin-top: 20px;
 }
 
-.card-container, .favorites-card-container {
+.card-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.favorites-card-container {
+    display: none;
     flex-wrap: wrap;
     justify-content: center;
 }
