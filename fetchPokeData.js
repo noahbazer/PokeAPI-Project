@@ -216,4 +216,18 @@ function sortCardsReverseAlphabetically() {
   sortedCards.forEach((card) => {
     favoritesContainer.appendChild(card);
   });
+};
+
+function setActiveLink() {
+  const containerLinks = document.querySelectorAll('.container-link');
+  containerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      containerLinks.forEach(link => {
+        link.removeAttribute('id');
+      });
+      link.setAttribute('id', 'active');
+    });
+  });
 }
+
+setActiveLink();

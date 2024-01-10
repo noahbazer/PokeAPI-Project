@@ -14,17 +14,19 @@
         </div>
         <header>
             <div class="title">PokeAPI</div>
-            <div class="sort-buttons">
-                <button onclick="sortCardsAlphabetically(),sortByNameAsc()">Sort A-Z</button>
-                <button onclick="sortCardsReverseAlphabetically(),sortByNameDesc()">Sort Z-A</button>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><p onclick="showMainContainer()">Home</p></li>
-                    <li><p onclick="showFavoritesContainer()" id="favorites-link">Favorites</p></li>
+            <nav class="nav"">
+                <ul class="container-links">
+                    <li><p id="active" class='container-link' onclick="showMainContainer()">Home</p></li>
+                    <li><p class='container-link' onclick="showFavoritesContainer()">Favorites</p></li>
                 </ul>
             </nav>
         </header>
+        <div class="sort-container">
+            <div class="sort-buttons">
+                <button class='sort-button' onclick="sortCardsAlphabetically(),sortByNameAsc()">Sort A-Z</button>
+                <button class='sort-button' onclick="sortCardsReverseAlphabetically(),sortByNameDesc()">Sort Z-A</button>
+            </div>
+        </div>
         <div class="main-container">
             <div class="card-container"></div>
         </div>
@@ -32,6 +34,5 @@
             <div class="favorites-card-container"></div>
         </div>
         <script src="./fetchPokeData.js" async defer></script>
-        <script src="./favorites.js" async defer></script>
     </body>
 </html>
