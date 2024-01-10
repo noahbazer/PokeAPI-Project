@@ -18,60 +18,44 @@ async function fetchData() {
 
   const setTypeIcon = (type) => {
     switch (type) {
-      case "grass":
-        return "https://archives.bulbagarden.net/media/upload/7/74/GrassIC_Big.png";
-      case "poison":
-        return "https://archives.bulbagarden.net/media/upload/3/3d/PoisonIC_Big.png";
-      case "fire":
-        return "https://archives.bulbagarden.net/media/upload/2/26/FireIC_Big.png";
-      case "flying":
-        return "https://archives.bulbagarden.net/media/upload/c/cb/FlyingIC_Big.png";
-      case "water":
-        return "https://archives.bulbagarden.net/media/upload/5/56/WaterIC_Big.png";
-      case "bug":
-        return "https://archives.bulbagarden.net/media/upload/c/c8/BugIC_Big.png";
-      case "normal":
-        return "https://archives.bulbagarden.net/media/upload/3/39/NormalIC_Big.png";
-      case "electric":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/ElectricIC_Big.png";
-      case "ground":
-        return "https://archives.bulbagarden.net/media/upload/8/8f/GroundIC_Big.png";
-      case "fairy":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/FairyIC_Big.png";
-      case "fighting":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/FightingIC_Big.png";
-      case "psychic":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/PsychicIC_Big.png";
-      case "rock":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/RockIC_Big.png";
-      case "steel":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/SteelIC_Big.png";
-      case "ice":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/IceIC_Big.png";
-      case "ghost":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/GhostIC_Big.png";
-      case "dragon":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/DragonIC_Big.png";
-      case "fairy":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/FairyIC_Big.png";
-      case "fighting":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/FightingIC_Big.png";
-      case "psychic":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/PsychicIC_Big.png";
+        case "grass":
+          return "./assets/icons/type/grass.png";
+        case "poison":
+          return "./assets/icons/type/poison.png";
+        case "fire":
+          return "./assets/icons/type/fire.png";
+        case "flying":
+          return "./assets/icons/type/flying.png";
+        case "water":
+          return "./assets/icons/type/water.png";
+        case "bug":
+          return "./assets/icons/type/bug.png";
+        case "normal":
+          return "./assets/icons/type/normal.png";
+        case "electric":
+          return "./assets/icons/type/electric.png";
+        case "ground":
+          return "./assets/icons/type/ground.png";
+        case "fairy":
+          return "./assets/icons/type/fairy.png";
+        case "fighting":
+          return "./assets/icons/type/fighting.png";
+        case "psychic":
+          return "./assets/icons/type/psychic.png";
         case "rock":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/RockIC_Big.png";
-      case "steel":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/SteelIC_Big.png";
-      case "ice":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/IceIC_Big.png";
-      case "ghost":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/GhostIC_Big.png";
-      case "dragon":
-        return "https://archives.bulbagarden.net/media/upload/4/4a/DragonIC_Big.png";
-      default:
-        return "https://archives.bulbagarden.net/media/upload/4/4a/UnknownIC_Big.png";
+          return "./assets/icons/type/rock.png";
+        case "steel":
+          return "./assets/icons/type/steel.png";
+        case "ice":
+          return "./assets/icons/type/ice.png";
+        case "ghost":
+          return "./assets/icons/type/ghost.png";
+        case "dragon":
+          return "./assets/icons/type/dragon.png";
+        default:
+          return "./assets/icons/type/unknown.png";
+        }
       }
-    }
 
 function displayData() {
   const container = document.querySelector(".card-container");
@@ -231,3 +215,24 @@ function setActiveLink() {
 }
 
 setActiveLink();
+
+function tallyPokemonTypes() {
+  const cards = document.querySelectorAll('.card');
+  const typeTally = {};
+
+  cards.forEach(card => {
+    const type = card.getAttribute('data-type');
+    typeTally[type] = (typeTally[type] || 0) + 1;
+  });
+
+  const typeCounter = document.querySelector('#type-counter');
+  typeCounter.innerHTML = '';
+
+  for (const type in typeTally) {
+    const p = document.createElement('p');
+    p.textContent = `${type}: ${typeTally[type]}`;
+    typeCounter.appendChild(p);
+  }
+}
+
+tallyPokemonTypes();

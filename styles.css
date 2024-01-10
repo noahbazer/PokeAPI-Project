@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'CustomFont';
-    src:  url(./fonts/pokemonfont.woff);
+    src:  url(./assets/fonts/pokemonfont.woff);
 }
 
 * {
