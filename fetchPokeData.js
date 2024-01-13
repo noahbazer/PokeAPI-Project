@@ -14,6 +14,7 @@ async function fetchData() {
     })
   );
   displayData();
+  countTypesAndDisplay();
 }
 
   const setTypeIcon = (type) => {
@@ -56,31 +57,6 @@ async function fetchData() {
           return "./assets/icons/type/unknown.png";
         }
       }
-
-function displayData() {
-  const container = document.querySelector(".card-container");
-  container.innerHTML = "";
-
-  pokemonData.forEach((pokemon, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    const types = pokemon.types.map((type) => type.type.name);
-
-    card.innerHTML = `
-      <div class="card-image">
-        <img class='card-sprite' src="${pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}" alt="${pokemon.name}">
-      </div>
-      <div class="card-content">
-        <h2 class='card-title'>${(pokemon.name).toUpperCase()}</h2>
-        <div class="types">
-          ${types.map((type) => `<img class="typeicon" src="${setTypeIcon(type)}">`).join("")}
-        </div>
-        <button onclick="addToFavorites(${index})">Add to Favorites</button>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
 
 function addToFavorites(index) {
   const card = document.querySelector(`.card[data-index="${index}"]`);
@@ -127,6 +103,31 @@ function displayData() {
     `;
     container.appendChild(card);
   });
+}
+
+function countTypesAndDisplay() {
+  const typeCount = {};
+
+  pokemonData.forEach(pokemon => {
+    pokemon.types.forEach(type => {
+      const typeName = type.type.name;
+      if (typeCount[typeName]) {
+        typeCount[typeName]++;
+      } else {
+        typeCount[typeName] = 1;
+      }
+    });
+  });
+
+  const countContainer = document.querySelector('.count');
+  countContainer.innerHTML = '';
+
+  for (const type in typeCount) {
+    const countDiv = document.createElement('div');
+    const typeIcon = setTypeIcon(type);
+    countDiv.innerHTML = `<img class="type-icon" src="${typeIcon}"> ${typeCount[type]}`;
+    countContainer.appendChild(countDiv);
+  }
 }
 
 function displayFavorites() {
@@ -215,24 +216,3 @@ function setActiveLink() {
 }
 
 setActiveLink();
-
-function tallyPokemonTypes() {
-  const cards = document.querySelectorAll('.card');
-  const typeTally = {};
-
-  cards.forEach(card => {
-    const type = card.getAttribute('data-type');
-    typeTally[type] = (typeTally[type] || 0) + 1;
-  });
-
-  const typeCounter = document.querySelector('#type-counter');
-  typeCounter.innerHTML = '';
-
-  for (const type in typeTally) {
-    const p = document.createElement('p');
-    p.textContent = `${type}: ${typeTally[type]}`;
-    typeCounter.appendChild(p);
-  }
-}
-
-tallyPokemonTypes();

@@ -162,3 +162,35 @@ header {
     cursor: pointer;
     font-size: 1.5em;
 }
+
+.count-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+.count-container h3 {
+    margin: 0;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+.count {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.count div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
