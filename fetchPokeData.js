@@ -77,6 +77,7 @@ function removeFromFavorites(index) {
   const button = card.querySelector('button');
   button.textContent = 'Add to Favorites';
   button.setAttribute('onclick', `addToFavorites(${index})`);
+
 };
 
 function displayData() {
@@ -170,6 +171,25 @@ const showMainContainer = () => {
   favoritesContainer.style.display = 'none';
 };
 
+let toggleBool = false;
+
+function toggleButton() {
+  const button = document.querySelector('.container-link');
+  
+  if (toggleBool === true) {
+    showMainContainer();
+    button.textContent = 'Go to Favorites';
+    toggleBool = false;
+    console.log(toggleBool);
+  } else {
+    showFavoritesContainer();
+    button.textContent = 'Return to Home';
+    toggleBool = true;
+    console.log(toggleBool);
+  }
+}
+
+
 
 function sortByNameAsc() {
   const cards = mainContainer.querySelectorAll('.card');
@@ -203,16 +223,6 @@ function sortCardsReverseAlphabetically() {
   });
 };
 
-function setActiveLink() {
-  const containerLinks = document.querySelectorAll('.container-link');
-  containerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      containerLinks.forEach(link => {
-        link.removeAttribute('id');
-      });
-      link.setAttribute('id', 'active');
-    });
-  });
-}
 
-setActiveLink();
+
+
